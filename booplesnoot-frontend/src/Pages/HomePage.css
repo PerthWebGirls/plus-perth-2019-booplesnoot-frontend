@@ -1,0 +1,14 @@
+#services {
+    min-height: 300px;
+    position: relative;
+    overflow: hidden;
+  }
+  #services::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-height: 100%;
+    width: 100%;
+    background: #c7c270;
+  }
