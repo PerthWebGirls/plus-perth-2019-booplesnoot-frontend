@@ -32,13 +32,13 @@ export const NavBar = () => {
                         <li className="nav-item mr-3">
                             <Link to="/RegisterPage" className="nav-link">
                                 Register
-                                <i className="fas fa-user-plus"></i>                             
+                                <i className="fas fa-user-plus pl-2"></i>                             
                             </Link>                             
                         </li>
                         <li className="nav-item mr-3">
                             <Link to="/LoginPage" className="nav-link">
                                 Login
-                                <i className="fas fa-sign-in-alt"></i>                           
+                                <i className="fas fa-sign-in-alt pl-2"></i>                           
                             </Link>                        
                         </li>
                     </ul>

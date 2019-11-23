@@ -7,10 +7,10 @@ export const Header = () => {
                 <div className="container">
                     <div className="row">
                         <div className="col-md-4">
-                            <i className="fas fa-phone"></i>(61) 111 222 333
+                            <i className="fas fa-phone pr-2"></i>(61) 111 222 333
                         </div>
                         <div className="col-md-4">
-                            <i className="fas fa-envelope-open"></i>contact@something.com
+                            <i className="fas fa-envelope-open pr-2"></i>contact@something.com
                         </div>
                         <div className="col-md-4">
                             <div className="social text-right">
