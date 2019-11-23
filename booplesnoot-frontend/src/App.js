@@ -5,6 +5,8 @@ import './vendor/bootstrap.css';
 import './vendor/lightbox.css';
 import './App.css';
 
+
+
 function App() {
   return (
     <Router>
