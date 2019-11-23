@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import './FeaturedRecipes.css';
+import './FeaturedRecipies.css';
 
-class FeaturedRecipes extends Component {
+class FeaturedRecipies extends Component {
     render() {
         return (            
             <div className="col-md-6 col-lg-4 mb-4">
@@ -49,4 +49,4 @@ class FeaturedRecipes extends Component {
     }
 }
 
-export default FeaturedRecipes;
+export default FeaturedRecipies;
