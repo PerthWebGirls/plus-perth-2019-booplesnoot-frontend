@@ -1,0 +1,19 @@
+.logo {
+    width: 80px;
+  }
+
+.navbar {
+opacity: 0.9;
+text-transform: uppercase;
+}
+
+.social a {
+margin-right: 0.4rem;
+}
+
+.home-left {
+background-color: #adbba3;
+}
+.home-right {
+background-color: #c68c57;
+}
