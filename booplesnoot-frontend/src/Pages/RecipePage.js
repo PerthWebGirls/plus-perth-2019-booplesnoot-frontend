@@ -1,10 +1,13 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import PageTemplate from '../Components/Templates/PageTemplate';
 import Recipe from '../Components/Organisms/Recipe';
 import { API_URL} from '../Containers/AppContainer';
 
 
+
 class RecipePage extends Component {
+
     constructor(props) {
         super(props);
 
@@ -16,8 +19,22 @@ class RecipePage extends Component {
 
 
     componentDidMount() {
+
+        let url = new URL(`${API_URL}/recipes/search`);
+        let ingredients = Object.values(this.props.location.state.ingredients).filter(
+            Boolean
+        );
+        let params = {           
+            apiKey: process.env.REACT_APP_API_KEY,
+            query: ingredients.join(','),
+            number: 12            
+        };
+        
+        Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
+        
+
         fetch(
-            `${API_URL}/recipes/search?apiKey=${process.env.REACT_APP_API_KEY}&number=12`, {
+            url, {
                 headers: {
                     "Content-Type": "application/json",
                     "Accept": "application/json"
@@ -71,4 +88,4 @@ class RecipePage extends Component {
     }
 }
 
-export default RecipePage; 
+export default withRouter(RecipePage);
