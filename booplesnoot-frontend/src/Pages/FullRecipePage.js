@@ -16,7 +16,7 @@ class FullRecipePage extends Component {
     }
 
 
-    componentDidMount() {     
+    componentDidMount() {
         const { id } = this.props.match.params;
 
         fetch(
@@ -27,35 +27,35 @@ class FullRecipePage extends Component {
 
                 }
             }
-        ) 
+        )
         .then(response => response.json())
-        .then(data => {        
+        .then(data => {
             this.setState({
                 isLoaded: true,
-                recipe: data[0]                
-            }); 
+                recipe: data[0]
+            });
         })
         .catch(function(err) {
-            console.error(err);     
+            console.error(err);
         });
     }
-        
-    render() {        
-        const { isLoaded, recipe } = this.state; 
-            
 
-        if (!isLoaded) {            
+    render() {
+        const { isLoaded, recipe } = this.state;
+
+
+        if (!isLoaded) {
             return (
-                <PageTemplate>            
-                    <div>Loading...</div> 
-                </PageTemplate> 
+                <PageTemplate>
+                    <div>Loading...</div>
+                </PageTemplate>
             )
         } else {
             return (
                 <PageTemplate>
                     <div className="container">
                         <h3 className="text-center pt-4 pb-2">Recipe</h3>
-                        <div className="row">                  
+                        <div className="row">
                             <section id="listing" className="py-4">
                                 <div className="container">
                                     <Link to="/Recipes" className="btn btn-light mb-4">
@@ -65,7 +65,7 @@ class FullRecipePage extends Component {
                                         <div className="col-md-9">
                                             <h2>
                                                 <span className="badge badge-secondary text-white pb-2">{recipe.title}</span>
-                                            </h2>                        
+                                            </h2>
                                         </div>
                                     </div>
                                     <div className="row">
@@ -93,8 +93,8 @@ class FullRecipePage extends Component {
                                         <div className="col-md-6">
                                             <ul className="list-group list-group-flush">
                                                 <li className="list-group-item text-secondary">
-                                                    <i className="fas fa-seedling pr-1"></i>Gluten Free 
-                                                    <span className="float-right">{recipe.glutenFree ? 'Yes' : 'No'} 
+                                                    <i className="fas fa-seedling pr-1"></i>Gluten Free
+                                                    <span className="float-right">{recipe.glutenFree ? 'Yes' : 'No'}
                                                     </span>
                                                 </li>
                                                 <li className="list-group-item text-secondary">
@@ -104,55 +104,55 @@ class FullRecipePage extends Component {
                                             </ul>
                                         </div>
                                     </div>
-                                    <div className="row mb-5 fields">                                        
-                                        {recipe.extendedIngredients.map(ingredient => (                                                                                     
-                                            <div className="col-md-6" key={ingredient.id}>                                                
+                                    <div className="row mb-5 fields">
+                                        {recipe.extendedIngredients.map(ingredient => (
+                                            <div className="col-md-6" key={ingredient.id}>
                                                     <li className="list-group-item text-secondary">
                                                         <i className="fas fa-shopping-basket pr-1"></i> {ingredient.name}
                                                         <span className="float-right">{ingredient.measures.us.amount} {ingredient.measures.us.unitShort}</span>
                                                     </li>
-                                            </div>                                                                                     
-                                        ))}                                        
-                                    </div> 
-                                    <div className="row mb-5 fields"> 
-                                        <h3 className="text-secondary">Equipment:</h3>                                
-                                        {recipe.analyzedInstructions.map(instructions => (  
-                                            instructions.steps.map(step => ( 
-                                                step.equipment.map(equipment => (                                                                                                          
+                                            </div>
+                                        ))}
+                                    </div>
+                                    <div className="row mb-5 fields">
+                                        <h3 className="text-secondary">Equipment:</h3>
+                                        {recipe.analyzedInstructions.map(instructions => (
+                                            instructions.steps.map(step => (
+                                                step.equipment.map(equipment => (
                                                     <div className="col-md-12">
                                                         <li className="text-secondary">
-                                                            {equipment.name}        
-                                                        </li>                                       
-                                                    </div> 
-                                                 ))   
-                                             ))                                                                                       
-                                        ))}                                        
-                                    </div>                                   
-                                    <div className="row mb-5 fields"> 
-                                        <h3 className="text-secondary">Instructions:</h3>                                
-                                        {recipe.analyzedInstructions.map(instructions => (  
-                                            instructions.steps.map(step => (                                                                                                                             
+                                                            {equipment.name}
+                                                        </li>
+                                                    </div>
+                                                 ))
+                                             ))
+                                        ))}
+                                    </div>
+                                    <div className="row mb-5 fields">
+                                        <h3 className="text-secondary">Instructions:</h3>
+                                        {recipe.analyzedInstructions.map(instructions => (
+                                            instructions.steps.map(step => (
                                                 <div className="col-md-12">
                                                 <ul>
                                                     <li className="text-secondary">
-                                                        {step.step}                                               
+                                                        {step.step}
                                                     </li>
                                                 </ul>
-                                                </div> 
-                                             ))                                                                                       
-                                        ))}                                        
-                                    </div>                                        
+                                                </div>
+                                             ))
+                                        ))}
+                                    </div>
                                 </div>
-                            </section>               
+                            </section>
                         </div>
                     </div>
                 </PageTemplate>
             )
         }
 
-        
+
     }
 }
 
 
-export default FullRecipePage; 
+export default FullRecipePage;
