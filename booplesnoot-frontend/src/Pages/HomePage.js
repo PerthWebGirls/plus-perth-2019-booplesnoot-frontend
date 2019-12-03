@@ -7,30 +7,28 @@ import './HomePage.css';
 
 
 const HomePage = () => {
-    return (        
-        <PageTemplate>         
+    return (
+        <PageTemplate>
             <SearchBox/>
             <section id="listings" className="py-5">
-                <div className="container"> 
-                    <h3 className="text-center mb-3 mt-3">Featured Recipes</h3>                   
-                    <div className="row">                         
-                        <FeaturedRecipes/>  
-                        <FeaturedRecipes/> 
-                        <FeaturedRecipes/> 
-                    </div>
-                </div>
-            </section> 
-            <section id="services" className="py-5 bg-secondary text-white">
                 <div className="container">
-                    <div className="row text-center">
-                        <Something/>  
-                        <Something/>
-                        <Something/> 
+                    <h3 className="text-center mb-3 mt-3">Featured Recipes</h3>
+                    <div className="row">
+                        <FeaturedRecipes/>
                     </div>
                 </div>
             </section>
-        </PageTemplate>        
-    )        
+            <section id="services" className="py-5 bg-secondary text-white">
+                <div className="container">
+                    <div className="row text-center">
+                        <Something/>
+                        <Something/>
+                        <Something/>
+                    </div>
+                </div>
+            </section>
+        </PageTemplate>
+    )
 }
 
 

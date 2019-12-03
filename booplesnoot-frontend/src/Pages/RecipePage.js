@@ -4,6 +4,9 @@ import PageTemplate from '../Components/Templates/PageTemplate';
 import Recipe from '../Components/Organisms/Recipe';
 import { API_URL} from '../Containers/AppContainer';
 
+const DEFAULT_REQUEST_PARAMS = {
+    ingredients: {}
+};
 
 
 class RecipePage extends Component {
@@ -21,17 +24,18 @@ class RecipePage extends Component {
     componentDidMount() {
 
         let url = new URL(`${API_URL}/recipes/search`);
-        let ingredients = Object.values(this.props.location.state.ingredients).filter(
+        let request = this.props.location.state || DEFAULT_REQUEST_PARAMS;
+        let ingredients = Object.values(request.ingredients).filter(
             Boolean
         );
-        let params = {           
+        let params = {
             apiKey: process.env.REACT_APP_API_KEY,
             query: ingredients.join(','),
-            number: 12            
+            number: 12
         };
-        
+
         Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
-        
+
 
         fetch(
             url, {
@@ -41,50 +45,50 @@ class RecipePage extends Component {
 
                 }
             }
-        ) 
+        )
         .then(response => response.json())
-        .then(data => {        
+        .then(data => {
             this.setState({
                 isLoaded: true,
-                recipes: data.results                
-            }); 
+                recipes: data.results
+            });
         })
         .catch(function(err) {
-            console.error(err);     
+            console.error(err);
         });
     }
-        
-    render() {        
-        const { isLoaded, recipes } = this.state; 
-        
 
-        if (!isLoaded) {            
+    render() {
+        const { isLoaded, recipes } = this.state;
+
+
+        if (!isLoaded) {
             return (
-                <PageTemplate>            
-                    <div>Loading...</div> 
-                </PageTemplate> 
+                <PageTemplate>
+                    <div>Loading...</div>
+                </PageTemplate>
             )
         } else {
             return (
                 <PageTemplate>
                     <div className="container">
                         <h3 className="text-center pt-4 pb-2">Recipes</h3>
-                        <div className="row">                    
+                        <div className="row">
                             {recipes.map(recipe => (
-                                <Recipe 
-                                    id={recipe.id}                               
+                                <Recipe
+                                    id={recipe.id}
                                     title={recipe.title}
                                     cookTime={recipe.readyInMinutes}
                                     servings={recipe.servings}
-                                /> 
-                            ))}                    
+                                />
+                            ))}
                         </div>
                     </div>
                 </PageTemplate>
             )
         }
 
-        
+
     }
 }
 

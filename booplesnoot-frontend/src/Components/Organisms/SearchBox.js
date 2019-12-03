@@ -20,34 +20,34 @@ class SearchBox extends Component {
         };
 
         this.updateSearch = this.updateSearch.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);       
+        this.handleSubmit = this.handleSubmit.bind(this);
 
     }
 
-    updateSearch(index) {      
-       
-        return (event) => {            
+    updateSearch(index) {
+
+        return (event) => {
             let ingredients = this.state.ingredients;
 
             this.setState({
                 ingredients: update(ingredients, {[index]: {$set: event.target.value}})
             });
-        }       
+        }
     }
 
-    handleSubmit(event) {        
+    handleSubmit(event) {
         this.props.history.push({
             pathname: '/Recipes',
-            state: {ingredients: this.state.ingredients} 
-        });    
+            state: {ingredients: this.state.ingredients}
+        });
 
         event.preventDefault();
     }
 
     render() {
-    return (  
+    return (
             <div>
-                <section id="showcase">            
+                <section id="showcase">
                     <div className="col-md-7">
                         <div className="home-search p-5">
                             <div className="overlay p-5">
@@ -65,32 +65,32 @@ class SearchBox extends Component {
                                                 </Label>
                                                 <InputField
                                                     value={this.state.ingredients[0]}
-                                                    onChange={this.updateSearch(0)}                                                    
-                                                    placeholder="ingredient 1"                                            
+                                                    onChange={this.updateSearch(0)}
+                                                    placeholder="ingredient 1"
                                                 />
                                             </div>
                                             <div className="col-md-4 mb-3">
                                                 <Label className="sr-only">
                                                     ingredient 2
                                                 </Label>
-                                                <InputField 
+                                                <InputField
                                                     value={this.state.ingredients[1]}
-                                                    onChange={this.updateSearch(1)} 
-                                                    placeholder="ingredient 2" 
+                                                    onChange={this.updateSearch(1)}
+                                                    placeholder="ingredient 2"
                                                 />
                                             </div>
                                             <div className="col-md-4 mb-3">
                                                 <Label className="sr-only">
                                                     ingredient 3
                                                 </Label>
-                                                <InputField 
+                                                <InputField
                                                     value={this.state.ingredients[2]}
-                                                    onChange={this.updateSearch(2)}                                                                                                 
-                                                    placeholder="ingredient 3" 
+                                                    onChange={this.updateSearch(2)}
+                                                    placeholder="ingredient 3"
                                                 />
                                             </div>
                                         </div>
-                                        <Button                                 
+                                        <Button
                                             className="btn btn-secondary btn-block mt-4">
                                             Submit form
                                         </Button>
@@ -99,7 +99,7 @@ class SearchBox extends Component {
                             </div>
                         </div>
                     </div>
-                </section> 
+                </section>
             </div>
         )
     }
