@@ -3,6 +3,9 @@ import { withRouter } from 'react-router-dom';
 import PageTemplate from '../Components/Templates/PageTemplate';
 import Recipe from '../Components/Organisms/Recipe';
 import { API_URL} from '../Containers/AppContainer';
+import RecipePagination from '../Components/Organisms/RecipePagination';
+import LoadingIndicator from '../Components/Atoms/LoadingIndicator';
+
 
 const DEFAULT_REQUEST_PARAMS = {
     ingredients: {}
@@ -16,8 +19,21 @@ class RecipePage extends Component {
 
         this.state = {
             isLoaded: false,
-            recipes: []
+            recipes: [],
+            totalResults: null,
+            offset: 0,
+            number: 12
         };
+
+        this.paginationDidChange = this.paginationDidChange.bind(this);
+    }
+
+    paginationDidChange(current, pageSize) {
+        this.setState({
+            isLoaded: false,
+            offset: (current - 1) * pageSize,
+            number: pageSize
+        }, this.componentDidMount);
     }
 
 
@@ -31,7 +47,9 @@ class RecipePage extends Component {
         let params = {
             apiKey: process.env.REACT_APP_API_KEY,
             query: ingredients.join(','),
-            number: 12
+            offset: this.state.offset,
+            number: this.state.number
+
         };
 
         Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
@@ -50,7 +68,8 @@ class RecipePage extends Component {
         .then(data => {
             this.setState({
                 isLoaded: true,
-                recipes: data.results
+                recipes: data.results,
+                totalResults: data.totalResults
             });
         })
         .catch(function(err) {
@@ -65,7 +84,7 @@ class RecipePage extends Component {
         if (!isLoaded) {
             return (
                 <PageTemplate>
-                    <div>Loading...</div>
+                    <LoadingIndicator/>
                 </PageTemplate>
             )
         } else {
@@ -73,15 +92,32 @@ class RecipePage extends Component {
                 <PageTemplate>
                     <div className="container">
                         <h3 className="text-center pt-4 pb-2">Recipes</h3>
+                        <div className="row justify-content-end">
+                            <RecipePagination
+                                offset={this.state.offset}
+                                number={this.state.number}
+                                totalResults={this.state.totalResults}
+                                onChange={this.paginationDidChange}
+                            />
+                        </div>
                         <div className="row">
                             {recipes.map(recipe => (
                                 <Recipe
+                                    key={recipe.id}
                                     id={recipe.id}
                                     title={recipe.title}
                                     cookTime={recipe.readyInMinutes}
                                     servings={recipe.servings}
                                 />
                             ))}
+                        </div>
+                        <div className="row justify-content-end">
+                            <RecipePagination
+                                offset={this.state.offset}
+                                number={this.state.number}
+                                totalResults={this.state.totalResults}
+                                onChange={this.paginationDidChange}
+                            />
                         </div>
                     </div>
                 </PageTemplate>

@@ -2,7 +2,7 @@ import React from 'react';
 import PageTemplate from '../Components/Templates/PageTemplate';
 import SearchBox from '../Components/Organisms/SearchBox';
 import FeaturedRecipes from '../Components/Organisms/FeaturedRecipes';
-import Something from '../Components/Molecules/Something';
+import FoodTrivia from '../Components/Organisms/FoodTrivia';
 import './HomePage.css';
 
 
@@ -20,10 +20,12 @@ const HomePage = () => {
             </section>
             <section id="services" className="py-5 bg-secondary text-white">
                 <div className="container">
-                    <div className="row text-center">
-                        <Something/>
-                        <Something/>
-                        <Something/>
+                    <div className="triviaContainer">
+                        <div className="row text-center">
+                            <FoodTrivia/>
+                            <FoodTrivia/>
+                            <FoodTrivia/>
+                        </div>
                     </div>
                 </div>
             </section>

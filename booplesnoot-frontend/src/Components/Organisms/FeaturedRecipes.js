@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { API_URL} from '../../Containers/AppContainer';
 import Recipe from '../Organisms/Recipe';
 import './FeaturedRecipes.css';
+import LoadingIndicator from '../Atoms/LoadingIndicator';
 
 
 class FeaturedRecipes extends Component {
@@ -30,7 +31,6 @@ class FeaturedRecipes extends Component {
                 isLoaded: true,
                 recipes: data.recipes
             });
-            console.log(data);
         })
         .catch(function(err) {
             console.error(err);
@@ -39,24 +39,27 @@ class FeaturedRecipes extends Component {
 
     render() {
         const { isLoaded, recipes } = this.state;
-            return (
-                <div className="container">
-                    <div className="row">
-                        {recipes.map(recipes => (
-                            <Recipe
-                                id={recipes.id}
-                                title={recipes.title}
-                                cookTime={recipes.readyInMinutes}
-                                servings={recipes.servings}
-                            />
-                        ))}
-                    </div>
-                </div>
 
-            )
+        if (!isLoaded) {
+            return <LoadingIndicator size="sm"/>
         }
+
+        return (
+            <div className="container">
+                <div className="row">
+                    {recipes.map(recipe => (
+                        <Recipe
+                            key={recipe.id}
+                            id={recipe.id}
+                            title={recipe.title}
+                            cookTime={recipe.readyInMinutes}
+                            servings={recipe.servings}
+                        />
+                    ))}
+                </div>
+            </div>
+        )
     }
-
-
+}
 
 export default FeaturedRecipes;

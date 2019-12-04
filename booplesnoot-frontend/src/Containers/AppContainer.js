@@ -5,13 +5,14 @@ import LoginPage from '../Pages/LoginPage';
 import RegisterPage from '../Pages/RegisterPage';
 import RecipePage from '../Pages/RecipePage';
 import FullRecipePage from '../Pages/FullRecipePage';
+import AboutPage from '../Pages/AboutPage';
 
 export const API_URL = "https://api.spoonacular.com";
 
 
 
-class AppContainer extends Component { 
-  render() {      
+class AppContainer extends Component {
+  render() {
     return (
       <>
         <Route
@@ -24,13 +25,21 @@ class AppContainer extends Component {
           exact
         />
         <Route
+          path="/About"
+          component={() => {
+            return (
+              <AboutPage/>
+            );
+          }}
+        />
+        <Route
           path="/Recipes"
           component={() => {
             return (
               <RecipePage/>
             );
           }}
-        />    
+        />
         <Route
           path="/LoginPage"
           component={() => {
@@ -55,5 +64,5 @@ class AppContainer extends Component {
     );
   }
 }
-    
+
 export default AppContainer;

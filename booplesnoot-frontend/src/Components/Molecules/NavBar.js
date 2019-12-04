@@ -14,32 +14,34 @@ export const NavBar = () => {
                 </button>
                 <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <ul className="navbar-nav">
-                        <li className="nav-item active mr-3">  
+                        <li className="nav-item active mr-3">
                             <Link to="/" className="nav-link">
                                 Home
-                            </Link>                            
+                            </Link>
                         </li>
                         <li className="nav-item mr-3">
-                            <a className="nav-link" href="about.html">About</a>
+                            <Link to="/About" className="nav-link">
+                                About
+                            </Link>
                         </li>
                         <li className="nav-item mr-3">
                             <Link to="/Recipes" className="nav-link">
                                 Recipes
-                            </Link>                             
+                            </Link>
                         </li>
                     </ul>
                     <ul className="navbar-nav ml-auto">
                         <li className="nav-item mr-3">
                             <Link to="/RegisterPage" className="nav-link">
                                 Register
-                                <i className="fas fa-user-plus pl-2"></i>                             
-                            </Link>                             
+                                <i className="fas fa-user-plus pl-2"></i>
+                            </Link>
                         </li>
                         <li className="nav-item mr-3">
                             <Link to="/LoginPage" className="nav-link">
                                 Login
-                                <i className="fas fa-sign-in-alt pl-2"></i>                           
-                            </Link>                        
+                                <i className="fas fa-sign-in-alt pl-2"></i>
+                            </Link>
                         </li>
                     </ul>
                 </div>
@@ -48,4 +50,4 @@ export const NavBar = () => {
     )
 }
 
-export default NavBar; 
+export default NavBar;

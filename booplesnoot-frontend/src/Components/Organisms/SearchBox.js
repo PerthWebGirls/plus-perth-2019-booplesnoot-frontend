@@ -6,6 +6,7 @@ import Button from '../Atoms/Button';
 import Label from '../Atoms/Label';
 import './SearchBox.css';
 
+
 class SearchBox extends Component {
 
     constructor(props) {
@@ -77,7 +78,9 @@ class SearchBox extends Component {
                                                     value={this.state.ingredients[1]}
                                                     onChange={this.updateSearch(1)}
                                                     placeholder="ingredient 2"
+
                                                 />
+
                                             </div>
                                             <div className="col-md-4 mb-3">
                                                 <Label className="sr-only">

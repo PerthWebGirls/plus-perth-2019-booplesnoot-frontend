@@ -1,0 +1,19 @@
+.loading-indicator {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.loading-indicator--sm {
+    height: 200px;
+}
+
+.loading-indicator--md {
+    height: 300px;
+}
+
+.loading-indicator--lg {
+    height: 400px;
+}
