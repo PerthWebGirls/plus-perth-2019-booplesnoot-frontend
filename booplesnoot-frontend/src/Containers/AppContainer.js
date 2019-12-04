@@ -6,6 +6,7 @@ import RegisterPage from '../Pages/RegisterPage';
 import RecipePage from '../Pages/RecipePage';
 import FullRecipePage from '../Pages/FullRecipePage';
 import AboutPage from '../Pages/AboutPage';
+import AccountPage from '../Pages/AccountPage';
 
 export const API_URL = "https://api.spoonacular.com";
 
@@ -47,7 +48,7 @@ class AppContainer extends Component {
           }}
         />
         <Route path="/FullRecipePage/:id" component={FullRecipePage} />
-        <Route path="/Account" component={Account} />
+        <Route path="/AccountPage" component={AccountPage} />
       </>
     );
   }
