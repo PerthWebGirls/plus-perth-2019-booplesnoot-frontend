@@ -1,50 +1,63 @@
 import React, { Component } from 'react';
+import { API_URL} from '../../Containers/AppContainer';
+import Recipe from '../Organisms/Recipe';
 import './FeaturedRecipes.css';
+import LoadingIndicator from '../Atoms/LoadingIndicator';
+
 
 class FeaturedRecipes extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            isLoaded: false,
+            recipes: []
+        };
+    }
+
+
+    componentDidMount() {
+        fetch(
+            `${API_URL}/recipes/random?apiKey=${process.env.REACT_APP_API_KEY}&number=3&veryPopular=true`, {
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json",
+                }
+            }
+        )
+        .then(response => response.json())
+        .then(data => {
+            this.setState({
+                isLoaded: true,
+                recipes: data.recipes
+            });
+        })
+        .catch(function(err) {
+            console.error(err);
+        });
+    }
+
     render() {
-        return (            
-            <div className="col-md-6 col-lg-4 mb-4">
-                <div className="card listing-preview">
-                    <img className="card-img-top" src="images/recipes/1.jpg" alt=""/>
-                    <div className="card-img-overlay">
-                        <h2>
-                            <span className="badge badge-secondary text-white">Chicken Base</span>
-                        </h2>
-                    </div>
-                    <div className="card-body">
-                        <div className="listing-heading text-center">
-                            <h4 className="text-primary">Food Name 1</h4>
-                            <p>
-                            <i className="fas fa-map-marker text-secondary"></i> Spanish cuisine</p>
-                        </div>
-                        <hr/>
-                        <div className="row py-2 text-secondary">
-                            <div className="col-6">
-                            <i className="fas fa-th-large"></i> item 1</div>
-                            <div className="col-6">
-                            <i className="fas fa-th-large"></i> item 2</div>
-                        </div>
-                        <div className="row py-2 text-secondary">
-                            <div className="col-6">
-                            <i className="fas fa-th-large"></i> item 3</div>
-                            <div className="col-6">
-                            <i className="fas fa-th-large"></i> item 4</div>
-                        </div>
-                        <hr/>
-                        <div className="row py-2 text-secondary">
-                            <div className="col-6">
-                            <i className="fas fa-user"></i> Ellie S</div>
-                        </div>
-                        <div className="row text-secondary pb-2">
-                            <div className="col-6">
-                            <i className="fas fa-clock"></i> 1 day ago</div>
-                        </div>
-                        <hr/>
-                        <a href="listing.html" className="btn btn-primary btn-block">More Info</a>
-                    </div>
+        const { isLoaded, recipes } = this.state;
+
+        if (!isLoaded) {
+            return <LoadingIndicator size="sm"/>
+        }
+
+        return (
+            <div className="container">
+                <div className="row">
+                    {recipes.map(recipe => (
+                        <Recipe
+                            key={recipe.id}
+                            id={recipe.id}
+                            title={recipe.title}
+                            cookTime={recipe.readyInMinutes}
+                            servings={recipe.servings}
+                        />
+                    ))}
                 </div>
-            </div>            
+            </div>
         )
     }
 }

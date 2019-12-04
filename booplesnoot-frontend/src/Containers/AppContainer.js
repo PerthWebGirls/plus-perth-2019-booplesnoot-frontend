@@ -1,11 +1,11 @@
-import React, { Component } from "react";
-import { Route } from "react-router-dom";
-import HomePage from "../Pages/HomePage";
-import LoginPage from "../Pages/LoginPage";
-import RegisterPage from "../Pages/RegisterPage";
-import RecipePage from "../Pages/RecipePage";
-import FullRecipePage from "../Pages/FullRecipePage";
-import Account from "../Pages/Account";
+import React, { Component } from 'react';
+import { Route } from 'react-router-dom';
+import HomePage from '../Pages/HomePage';
+import LoginPage from '../Pages/LoginPage';
+import RegisterPage from '../Pages/RegisterPage';
+import RecipePage from '../Pages/RecipePage';
+import FullRecipePage from '../Pages/FullRecipePage';
+import AboutPage from '../Pages/AboutPage';
 
 export const API_URL = "https://api.spoonacular.com";
 
@@ -19,6 +19,14 @@ class AppContainer extends Component {
             return <HomePage />;
           }}
           exact
+        />
+        <Route
+          path="/About"
+          component={() => {
+            return (
+              <AboutPage/>
+            );
+          }}
         />
         <Route
           path="/Recipes"

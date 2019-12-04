@@ -1,0 +1,13 @@
+.rc-pagination-item {
+    outline: 0;
+}
+
+.rc-pagination-item-active {
+    background-color: #1E4730;
+    color: #fff;
+    border-color: #1E4730;
+}
+
+.rc-pagination-item:hover {
+    border-color: #1E4730;
+}

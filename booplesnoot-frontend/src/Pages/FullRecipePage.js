@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PageTemplate from '../Components/Templates/PageTemplate';
 import { API_URL } from '../Containers/AppContainer';
+import CookingTime from '../Components/Atoms/CookingTime'
 import './FullRecipePage.css'
+import LoadingIndicator from '../Components/Atoms/LoadingIndicator';
+
 
 
 class FullRecipePage extends Component {
@@ -47,7 +50,7 @@ class FullRecipePage extends Component {
         if (!isLoaded) {
             return (
                 <PageTemplate>
-                    <div>Loading...</div>
+                    <LoadingIndicator/>
                 </PageTemplate>
             )
         } else {
@@ -85,8 +88,8 @@ class FullRecipePage extends Component {
                                                 </li>
                                                 <li className="list-group-item text-secondary" id="cookingtime">
                                                     <i className="far fa-clock pr-1"></i>
-                                                    <span className="float-right">Preperation time: {recipe.preparationMinutes}min.</span>
-                                                    <span className="float-right">Cooking time: {recipe.cookingMinutes}min.</span>
+                                                    <span className="float-right">Preparation time: <CookingTime cookingTimeMinutes={recipe.preparationMinutes}/></span>
+                                                    <span className="float-right">Cooking time: <CookingTime cookingTimeMinutes={recipe.cookingMinutes} /></span>
                                                 </li>
                                             </ul>
                                         </div>
