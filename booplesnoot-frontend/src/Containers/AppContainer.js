@@ -9,8 +9,6 @@ import AboutPage from '../Pages/AboutPage';
 
 export const API_URL = "https://api.spoonacular.com";
 
-
-
 class AppContainer extends Component {
   render() {
     return (
@@ -18,9 +16,7 @@ class AppContainer extends Component {
         <Route
           path="/"
           component={() => {
-            return (
-              <HomePage/>
-            );
+            return <HomePage />;
           }}
           exact
         />
@@ -35,31 +31,23 @@ class AppContainer extends Component {
         <Route
           path="/Recipes"
           component={() => {
-            return (
-              <RecipePage/>
-            );
+            return <RecipePage />;
           }}
         />
         <Route
           path="/LoginPage"
           component={() => {
-            return (
-              <LoginPage/>
-            );
+            return <LoginPage />;
           }}
         />
         <Route
           path="/RegisterPage"
           component={() => {
-            return (
-              <RegisterPage/>
-            );
+            return <RegisterPage />;
           }}
         />
-        <Route
-          path="/FullRecipePage/:id"
-          component={FullRecipePage}
-        />
+        <Route path="/FullRecipePage/:id" component={FullRecipePage} />
+        <Route path="/Account" component={Account} />
       </>
     );
   }
