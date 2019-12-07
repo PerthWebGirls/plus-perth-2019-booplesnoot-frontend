@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { withRouter } from 'react-router-dom';
+import update from 'immutability-helper';
 import PageTemplate from "../Components/Templates/PageTemplate";
 import { Link } from "react-router-dom";
 
@@ -14,12 +16,12 @@ class AccountPage extends Component {
 
   componentDidMount() {
     const { id } = this.props.match.params;
+    const accessToken = localStorage.getItem('token');
 
-    const access_token = "";
     fetch(`http://localhost:8000/users/1`, {
       method: "GET",
       headers: {
-        Authorization: `Bearer ${access_token}`
+        Authorization: `Bearer ${accessToken}`
       }
     })
       .then(response => response.json())
@@ -30,6 +32,9 @@ class AccountPage extends Component {
         });
       })
       .catch(function(err) {
+        this.props.history.push({
+          pathname: '/LoginPage'
+        });
         console.error(err);
       });
   }
@@ -129,13 +134,35 @@ class AccountPage extends Component {
                     </tr>
                     <tr>
                       <td>
-                        <h3>Dietary Requirements</h3>
+                      <h3>Dietary Requirements</h3>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
                         <input type="checkbox" name="requiremnets" value="req1" />
                         Diary Free<br />
                         <input type="checkbox" name="requiremnets" value="req2" />
                         Vegan<br />
+                        <input type="checkbox" name="requiremnets" value="req1" />
+                        Vegetarian<br />
+                        <input type="checkbox" name="requiremnets" value="req1" />
+                        Lacto-Vegetarian<br />
+                        <input type="checkbox" name="requiremnets" value="req1" />
+                        Ovo-Vegetarian<br />
+                        <input type="checkbox" name="requiremnets" value="req1" />
+                        Pescetarian<br />
+                      </td>
+                      <td>
+                        <input type="checkbox" name="requiremnets" value="req1" />
+                        Paleo<br />
+                        <input type="checkbox" name="requiremnets" value="req1" />
+                        Primal<br />
+                        <input type="checkbox" name="requiremnets" value="req1" />
+                        Whole 30<br />
                         <input type="checkbox" name="requiremnets" value="req2" />
                         Gluten Free<br />
+                        <input type="checkbox" name="requiremnets" value="req2" />
+                        Ketogenic<br />
                       </td>
                       <td>
                         <h3>Cooking Time</h3>
@@ -158,4 +185,4 @@ class AccountPage extends Component {
   }
 }
 
-export default AccountPage;
+export default withRouter(AccountPage);
