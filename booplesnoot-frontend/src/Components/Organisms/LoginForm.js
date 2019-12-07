@@ -28,7 +28,7 @@ class LoginForm extends Component {
 
     handleSubmit(event) {
         //need full API url for login e.g. /sessions
-        fetch('http://localhost:8000/sessions', {
+        fetch('http://localhost:8000/auth/', {
             method: 'POST',
             body: JSON.stringify({
                 username: this.state.username,
