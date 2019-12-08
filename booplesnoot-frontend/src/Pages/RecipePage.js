@@ -4,7 +4,7 @@ import Recipe from '../Components/Organisms/Recipe';
 import { API_URL} from '../Containers/AppContainer';
 import RecipePagination from '../Components/Organisms/RecipePagination';
 import LoadingIndicator from '../Components/Atoms/LoadingIndicator';
-import FeaturedRecipies from '../Components/Organisms/FeaturedRecipies';
+import FeaturedRecipies from '../Components/Organisms/FeaturedRecipes';
 
 const DEFAULT_REQUEST_PARAMS = {
     ingredients: {}

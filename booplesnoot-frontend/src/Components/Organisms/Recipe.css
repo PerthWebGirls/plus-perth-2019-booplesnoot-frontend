@@ -1,0 +1,11 @@
+.card {
+    margin-top: 1em;
+}
+
+
+h2 .badge  {
+    white-space: normal;
+    word-wrap: wrap;
+    text-align: left;
+    line-height: 1.2em;
+}
