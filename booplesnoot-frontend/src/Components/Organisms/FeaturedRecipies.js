@@ -62,4 +62,4 @@ class FeaturedRecipes extends Component {
     }
 }
 
-export default FeaturedRecipes;
+export default FeaturedRecipies;

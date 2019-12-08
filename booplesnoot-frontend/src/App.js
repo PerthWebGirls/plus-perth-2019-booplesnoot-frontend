@@ -6,8 +6,6 @@ import './vendor/lightbox.css';
 import ScrollToTop from '../src/Components/Atoms/ScrollToTop';
 import './App.css';
 
-
-
 function App() {
   return (
     <Router>
