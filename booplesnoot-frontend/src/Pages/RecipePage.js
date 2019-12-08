@@ -1,11 +1,10 @@
-import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
+import React, { Component } from 'react'
 import PageTemplate from '../Components/Templates/PageTemplate';
 import Recipe from '../Components/Organisms/Recipe';
 import { API_URL} from '../Containers/AppContainer';
 import RecipePagination from '../Components/Organisms/RecipePagination';
 import LoadingIndicator from '../Components/Atoms/LoadingIndicator';
-
+import FeaturedRecipies from '../Components/Organisms/FeaturedRecipes';
 
 const DEFAULT_REQUEST_PARAMS = {
     ingredients: {}
@@ -13,7 +12,6 @@ const DEFAULT_REQUEST_PARAMS = {
 
 
 class RecipePage extends Component {
-
     constructor(props) {
         super(props);
 
@@ -56,7 +54,7 @@ class RecipePage extends Component {
 
 
         fetch(
-            url, {
+            `${API_URL}/recipes/search?apiKey=${process.env.REACT_APP_API_KEY}&number=12`, {
                 headers: {
                     "Content-Type": "application/json",
                     "Accept": "application/json"
@@ -128,4 +126,4 @@ class RecipePage extends Component {
     }
 }
 
-export default withRouter(RecipePage);
+export default RecipePage; 

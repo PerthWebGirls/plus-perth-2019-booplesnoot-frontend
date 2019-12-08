@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { API_URL} from '../../Containers/AppContainer';
-import Recipe from '../Organisms/Recipe';
+import Recipe from './Recipe';
 import './FeaturedRecipes.css';
 import LoadingIndicator from '../Atoms/LoadingIndicator';
 
