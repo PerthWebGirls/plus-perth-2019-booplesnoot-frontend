@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import { withRouter } from 'react-router-dom';
-import update from 'immutability-helper';
 import PageTemplate from "../Components/Templates/PageTemplate";
-import { Link } from "react-router-dom";
+import LoadingIndicator from '../Components/Atoms/LoadingIndicator';
 
 class AccountPage extends Component {
   constructor(props) {
@@ -15,32 +14,45 @@ class AccountPage extends Component {
   }
 
   componentDidMount() {
-    const { id } = this.props.match.params;
     const accessToken = localStorage.getItem('token');
 
-    fetch(`http://localhost:8000/users/1`, {
+    fetch(`http://localhost:8000/api/account/`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${accessToken}`
       }
     })
-      .then(response => response.json())
-      .then(data => {
-        this.setState({
-          isLoaded: true,
-          user: data[0]
-        });
+      .then(response => {
+
+        if (response.status === 401) {
+          this.props.history.push({
+            pathname: '/LoginPage'
+          });
+        } else {
+          response.json().then(data => {
+            this.setState({
+              isLoaded: true,
+              user: data
+            });
+          });
+        }
       })
       .catch(function(err) {
-        this.props.history.push({
-          pathname: '/LoginPage'
-        });
         console.error(err);
       });
   }
 
   render() {
     const { isLoaded, user } = this.state;
+
+    if (!isLoaded) {
+      return (
+        <PageTemplate>
+          <LoadingIndicator />
+        </PageTemplate>
+      )
+    }
+
     return (
       <PageTemplate>
         <section id="showcase-inner" className="py-5 text-white">
@@ -66,7 +78,7 @@ class AccountPage extends Component {
           <div className="container">
             <div className="row">
               <div className="col-md-12">
-                <h2>Welcome {user}</h2>
+                <h2>Welcome {user.username}</h2>
                 <table className="table">
                   <thead>
                     <tr>
@@ -77,21 +89,21 @@ class AccountPage extends Component {
                   <tbody>
                     <tr>
                       <td>Username:</td>
-                      <td>test user name</td>
+                      <td>{user.username}</td>
                       <td>
                         <a className="btn btn-light" href="#">Update</a>
                       </td>
                     </tr>
                     <tr>
                       <td>Email:</td>
-                      <td>test@test.com</td>
+                      <td>{user.email}</td>
                       <td>
                         <a className="btn btn-light" href="#">Update</a>
                       </td>
                     </tr>
                     <tr>
                       <td>Password:</td>
-                      <td>##########</td>
+                      <td>******</td>
                       <td>
                         <a className="btn btn-light" href="#">Update</a>
                       </td>

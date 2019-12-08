@@ -48,11 +48,6 @@ export const NavBar = () => {
                 <i className="fas fa-sign-in-alt pl-2"></i>
               </Link>
             </li>
-            <li className="nav-item active mr-3">
-              <Link to="/AccountPage" className="nav-link">
-                Account
-              </Link>
-            </li>
           </ul>
         </div>
       </div>

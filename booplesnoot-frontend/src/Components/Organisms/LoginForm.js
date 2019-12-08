@@ -28,8 +28,12 @@ class LoginForm extends Component {
 
     handleSubmit(event) {
         //need full API url for login e.g. /sessions
-        fetch('http://localhost:8000/auth/', {
+        fetch('http://localhost:8000/api/token/', {
             method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
             body: JSON.stringify({
                 username: this.state.username,
                 password: this.state.password
@@ -38,7 +42,7 @@ class LoginForm extends Component {
         .then(response => response.json())
         .then(data => {
             // store the token, probably in data.token or data.session.token (change local storage to data)
-            localStorage.setItem('token', data.token);
+            localStorage.setItem('token', data.access);
             this.props.history.push({
                 pathname: '/AccountPage'
             });
@@ -47,6 +51,8 @@ class LoginForm extends Component {
             // feedback login failure error to user
             console.error(err);
         });
+
+        event.preventDefault();
     }
 
     render() {
