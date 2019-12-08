@@ -6,6 +6,7 @@ import RegisterPage from '../Pages/RegisterPage';
 import RecipePage from '../Pages/RecipePage';
 import FullRecipePage from '../Pages/FullRecipePage';
 import AboutPage from '../Pages/AboutPage';
+import Account from '../Pages/Account';
 
 export const API_URL = "https://api.spoonacular.com";
 
