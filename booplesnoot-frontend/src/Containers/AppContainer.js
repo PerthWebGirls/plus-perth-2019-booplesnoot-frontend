@@ -4,48 +4,54 @@ import HomePage from '../Pages/HomePage';
 import LoginPage from '../Pages/LoginPage';
 import RegisterPage from '../Pages/RegisterPage';
 import RecipePage from '../Pages/RecipePage';
+import FullRecipePage from '../Pages/FullRecipePage';
+import AboutPage from '../Pages/AboutPage';
+import Account from '../Pages/Account';
 
+export const API_URL = "https://api.spoonacular.com";
 
-class AppContainer extends Component { 
-    render() {
-        return (
-          <>
-            <Route
-              path="/"
-              component={() => {
-                return (
-                  <HomePage/>
-                );
-              }}
-              exact
-            />
-            <Route
-              path="/Recipes"
-              component={() => {
-                return (
-                  <RecipePage/>
-                );
-              }}
-            />    
-            <Route
-              path="/LoginPage"
-              component={() => {
-                return (
-                  <LoginPage/>
-                );
-              }}
-            />
-            <Route
-              path="/RegisterPage"
-              component={() => {
-                return (
-                  <RegisterPage/>
-                );
-              }}
-            />
-          </>
-        );
-      }
-    }
-    
+class AppContainer extends Component {
+  render() {
+    return (
+      <>
+        <Route
+          path="/"
+          component={() => {
+            return <HomePage />;
+          }}
+          exact
+        />
+        <Route
+          path="/About"
+          component={() => {
+            return (
+              <AboutPage/>
+            );
+          }}
+        />
+        <Route
+          path="/Recipes"
+          component={() => {
+            return <RecipePage />;
+          }}
+        />
+        <Route
+          path="/LoginPage"
+          component={() => {
+            return <LoginPage />;
+          }}
+        />
+        <Route
+          path="/RegisterPage"
+          component={() => {
+            return <RegisterPage />;
+          }}
+        />
+        <Route path="/FullRecipePage/:id" component={FullRecipePage} />
+        <Route path="/Account" component={Account} />
+      </>
+    );
+  }
+}
+
 export default AppContainer;
