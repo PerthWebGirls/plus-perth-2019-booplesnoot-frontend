@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { withRouter } from 'react-router-dom';
 import PageTemplate from '../Components/Templates/PageTemplate';
 import Recipe from '../Components/Organisms/Recipe';
 import { API_URL} from '../Containers/AppContainer';
@@ -54,7 +55,7 @@ class RecipePage extends Component {
 
 
         fetch(
-            `${API_URL}/recipes/search?apiKey=${process.env.REACT_APP_API_KEY}&number=12`, {
+            url, {
                 headers: {
                     "Content-Type": "application/json",
                     "Accept": "application/json"
@@ -126,4 +127,4 @@ class RecipePage extends Component {
     }
 }
 
-export default RecipePage; 
+export default withRouter(RecipePage);
