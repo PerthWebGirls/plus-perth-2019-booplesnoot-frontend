@@ -12,9 +12,11 @@ class SignUpForm extends Component {
         this.state = {
             first_name: '',
             last_name: '',
+            username: '',
             email: '',
-            password: '',
-            confirm_password: ''
+            password1: '',
+            password2: '',
+            errors: {}
         };
 
         this.updateState = this.updateState.bind(this);
@@ -30,30 +32,55 @@ class SignUpForm extends Component {
     }
 
     handleSubmit(event) {
-        fetch('http://localhost:8000/users', {
+        fetch('http://localhost:8000/api/register/', {
             method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
             body: JSON.stringify({
                 first_name: this.state.first_name,
                 last_name: this.state.last_name,
+                username: this.state.username,
                 email: this.state.email,
-                password: this.state.password,
-                //backend might need to add a confirm password field on the api
-                confirm_password: this.state.confirm_password
+                password1: this.state.password1,
+                password2: this.state.password2
             })
         })
-        .then(response => response.json())
-        .then(data => {
-            this.props.history.push({
-                pathname: '/LoginPage'
-            });
+        .then(response => {
+            response.json().then(data => {
+                if (response.status === 422) {
+                    this.setState({
+                        errors: data.errors
+                    });
+                } else {
+                    this.props.history.push({
+                        pathname: '/LoginPage'
+                    });
+                }
+            })
         })
-        .catch(err => {
-            // feedback user creation failure error to user
+        .catch(function(err) {
+            // feedback login failure error to user
             console.error(err);
         });
+
+        event.preventDefault();
     }
 
+
     render() {
+        let {errors} = this.state;
+        let errorMessages = {};
+
+        Object.keys(errors).map(field => (
+            errorMessages[field] = <ul className="errors">
+                {errors[field].map(error => (
+                    <li>{error}</li>
+                ))}
+            </ul>
+        ));
+
         return (
             <div>
                 <section id="register" className="bg-light py-5">
@@ -73,6 +100,7 @@ class SignUpForm extends Component {
                                                 onChange={this.updateState('first_name')}
                                                 required
                                                 />
+                                                {errorMessages['first_name']}
                                             </div>
                                             <div className="form-group">
                                                 <Label HTMLfor="last_name">Last Name</Label>
@@ -81,6 +109,16 @@ class SignUpForm extends Component {
                                                 onChange={this.updateState('last_name')}
                                                 required
                                                 />
+                                                {errorMessages['last_name']}
+                                            <div className="form-group">
+                                                <Label HTMLfor="username">username</Label>
+                                                <InputField
+                                                name="username"
+                                                onChange={this.updateState('username')}
+                                                required
+                                                />
+                                                {errorMessages['username']}
+                                            </div>
                                             </div>
                                             <div className="form-group">
                                                 <Label forHTML="email">Email</Label>
@@ -90,24 +128,27 @@ class SignUpForm extends Component {
                                                 onChange={this.updateState('email')}
                                                 required
                                                 />
+                                                {errorMessages['email']}
                                             </div>
                                             <div className="form-group">
-                                                <Label forHTML="password">Password</Label>
+                                                <Label forHTML="password1">Password</Label>
                                                 <InputField
                                                 type="password"
-                                                name="password"
-                                                onChange={this.updateState('password')}
+                                                name="password1"
+                                                onChange={this.updateState('password1')}
                                                 required
                                                 />
+                                                {errorMessages['password1']}
                                             </div>
                                             <div className="form-group">
-                                                <Label forHTML="confirm_password">Confirm Password</Label>
+                                                <Label forHTML="password2">Confirm Password</Label>
                                                 <InputField
                                                 type="password"
-                                                name="confirm_password"
-                                                onChange={this.updateState('confirm_password')}
+                                                name="password2"
+                                                onChange={this.updateState('password2')}
                                                 required
                                                 />
+                                                {errorMessages['password2']}
                                             </div>
                                             <Button value="Register">Register</Button>
                                         </form>
