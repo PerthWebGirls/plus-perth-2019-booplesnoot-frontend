@@ -62,7 +62,7 @@ class SearchBox extends Component {
                                         <div className="form-row">
                                             <div className="col-md-4 mb-3">
                                                 <Label className="sr-only">
-                                                    ingredient 1
+                                                    Ingredient 1
                                                 </Label>
                                                 <InputField
                                                     value={this.state.ingredients[0]}
@@ -72,7 +72,7 @@ class SearchBox extends Component {
                                             </div>
                                             <div className="col-md-4 mb-3">
                                                 <Label className="sr-only">
-                                                    ingredient 2
+                                                    Ingredient 2
                                                 </Label>
                                                 <InputField
                                                     value={this.state.ingredients[1]}
@@ -84,7 +84,7 @@ class SearchBox extends Component {
                                             </div>
                                             <div className="col-md-4 mb-3">
                                                 <Label className="sr-only">
-                                                    ingredient 3
+                                                    Ingredient 3
                                                 </Label>
                                                 <InputField
                                                     value={this.state.ingredients[2]}

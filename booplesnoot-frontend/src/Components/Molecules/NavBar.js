@@ -25,9 +25,9 @@ export const NavBar = () => {
               </Link>
             </li>
             <li className="nav-item mr-3">
-              <a className="nav-link" href="about.html">
+            <Link to="/About" className="nav-link">
                 About
-              </a>
+            </Link>
             </li>
             <li className="nav-item mr-3">
               <Link to="/Recipes" className="nav-link">
@@ -46,11 +46,6 @@ export const NavBar = () => {
               <Link to="/LoginPage" className="nav-link">
                 Login
                 <i className="fas fa-sign-in-alt pl-2"></i>
-              </Link>
-            </li>
-            <li className="nav-item active mr-3">
-              <Link to="/Account" className="nav-link">
-                Account
               </Link>
             </li>
           </ul>
