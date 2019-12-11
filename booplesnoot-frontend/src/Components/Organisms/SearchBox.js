@@ -55,7 +55,7 @@ class SearchBox extends Component {
                                 <h1 className="display-4 mb-4">
                                     Search For A Perfect Recipe
                                 </h1>
-                                <p className="lead">Want to find the perfect recipe which uses the ingredients in your cuboard? Type in the ingreidents that you have below to search for a delicious recipe!</p>
+                                <p className="lead">Want to find the perfect recipe which uses the ingredients in your cuboard? Type in the ingredients that you have below to search for a delicious recipe!</p>
                                 <div className="search">
                                     <form onSubmit={this.handleSubmit}>
                                         <div className="form-row">
